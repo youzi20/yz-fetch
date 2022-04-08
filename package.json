@@ -1,0 +1,17 @@
+{
+  "name": "yz-fetch",
+  "version": "1.0.6",
+  "description": "fetch 封装",
+  "main": "./index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "youzi",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-typescript": "^1.0.1"
+  }
+}

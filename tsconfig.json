@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true, // 允许合成默认导入
+      "esModuleInterop": true,
+      "allowJs": true, //  允许在ts内引用js
+      "declaration": true
+    },
+  }
