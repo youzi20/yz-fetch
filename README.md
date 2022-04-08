@@ -9,3 +9,6 @@ Request("url", {
     body: { ...params }
 });
 ```
+
+## 参数列表
+[params](https://github.com/youzi20/yz-fetch/blob/main/src/index.ts#L18)
