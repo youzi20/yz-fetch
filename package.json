@@ -1,8 +1,9 @@
 {
   "name": "yz-fetch",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "fetch 封装",
-  "main": "./index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/index.min.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c"

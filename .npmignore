@@ -1,3 +1,6 @@
 src/
-package-lock.json
+example/
+
 rollup.config.js
+tsconfig.json
+package-lock.json

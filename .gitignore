@@ -1,3 +1,7 @@
-index.d.ts
+
+
+es/
+dist/
+types/
 node_modules
 package-lock.json
