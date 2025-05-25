@@ -22,7 +22,7 @@ export interface OptionsType extends Omit<RequestInit, "body"> {
   handleCatchMessage?: HandleCatchMessage;
 }
 
-interface RequestClientConfig {
+export interface RequestClientConfig {
   baseUrl: string;
   debug?: boolean;
 }
