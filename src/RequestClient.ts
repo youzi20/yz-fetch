@@ -40,22 +40,16 @@ export class RequestClient {
     const [fullUrl, init, handlers] = this.createFetchRequest(url, options);
 
     try {
-      if (this.debug) {
-        console.debug("[Request Start]", fullUrl, init);
-      }
+      if (this.debug) console.debug("[Request Start]", fullUrl, init);
 
       const response = await fetch(fullUrl, init);
 
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
       const contentType = response.headers.get("content-type") || "";
       let res: ResponseType<T> | null = null;
 
-      if (contentType.includes("application/json")) {
-        res = await response.json();
-      }
+      if (contentType.includes("application/json")) res = await response.json();
 
       if (res) {
         if (res.code === 200) {
@@ -118,7 +112,9 @@ export class RequestClient {
 
     if (method === "GET" && body) {
       fullUrl += "?" + encodeParams(body, trim);
-    } else if (["POST", "PUT", "PATCH"].includes(method)) {
+    } else if (method === "PUT") {
+      requestInit.body = body as File;
+    } else if (method === "POST") {
       if (rawJson) {
         requestHeaders.set("Content-Type", "application/json; charset=utf-8");
         requestInit.body = JSON.stringify(trim ? trimParams(rawJson) : rawJson);
@@ -127,9 +123,6 @@ export class RequestClient {
         requestInit.body = encodeParams(formUrlencoded, trim);
       } else if (formData) {
         requestInit.body = formDataParams(formData, trim);
-      } else if (body) {
-        requestInit.body = JSON.stringify(trim ? trimParams(body) : body);
-        requestHeaders.set("Content-Type", "application/json; charset=utf-8");
       }
     }
 
