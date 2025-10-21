@@ -108,10 +108,12 @@ export class RequestClient {
       headers: requestHeaders,
     };
 
-    let fullUrl = url.match(/^https?:\/\//) ? url : `${this.baseUrl}${url}`;
+    var fullUrl = new URL(url.match(/^https?:\/\//) ? url : `${this.baseUrl}${url}`);
 
     if (method === "GET" && body) {
-      fullUrl += "?" + encodeParams(body, trim);
+      trimParams(body, ([key, value]) => {
+        fullUrl.searchParams.append(key, value);
+      });
     } else if (method === "PUT") {
       requestInit.body = body as File;
     } else if (method === "POST") {
@@ -127,7 +129,7 @@ export class RequestClient {
     }
 
     return [
-      fullUrl,
+      fullUrl.toString(),
       requestInit,
       {
         handleSuccessMessage,
