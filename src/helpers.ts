@@ -4,10 +4,7 @@ export function isValid<T extends any>(val: T): boolean {
   return val !== "" && val !== null && val !== undefined && JSON.stringify(val) !== "{}";
 }
 
-export const trimParams = (
-  arg: Record<string, any> | any[] = {},
-  callback?: (value: [string, any]) => void
-) => {
+export const trimParams = (arg: Record<string, any> | any[] = {}, callback?: (value: [string, any]) => void) => {
   if (Array.isArray(arg)) return arg.filter(Boolean);
 
   const params: Record<string, any> = {};
